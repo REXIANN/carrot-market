@@ -5,14 +5,28 @@ const Home: NextPage = () => {
     <div className="flex min-h-screen flex-col space-y-5 bg-slate-400 py-20 px-60">
       <div className={"rounded-2xl bg-white p-6 shadow-xl"}>
         <span className={"text-3xl font-semibold"}>Select Item</span>
-        <div className={"my-2 flex justify-between"}>
-          <span className={"text-gray-500"}>Grey Chair</span>
-          <span className={"font-semibold"}>$19</span>
-        </div>
-        <div className={"flex justify-between"}>
-          <span className={"text-gray-500"}>Grey Chair</span>
-          <span className={"font-semibold"}>$19</span>
-        </div>
+        <ul>
+          {[1, 2, 3, 4, 5].map((i) => {
+            return (
+              <div
+                key={i}
+                className={
+                  "my-2 flex justify-between odd:bg-blue-50 even:bg-yellow-500"
+                }
+              >
+                <span className={"text-gray-500"}>Grey Chair</span>
+                <span className={"font-semibold"}>$19</span>
+              </div>
+            );
+          })}
+        </ul>
+        <ul>
+          {["a", "b", "c", ""].map((c, i) => (
+            <li key={i} className={"bg-red-500 py-2 empty:hidden"}>
+              {c}
+            </li>
+          ))}
+        </ul>
         <div
           className={"mt-2 flex justify-between border-t-2 border-dashed pt-2"}
         >
@@ -27,7 +41,8 @@ const Home: NextPage = () => {
           Checkout
         </button>
       </div>
-      <div className={"overflow-hidden rounded-2xl bg-white shadow-xl"}>
+
+      <div className={"group overflow-hidden rounded-2xl bg-white shadow-xl"}>
         <div className={"bg-blue-500 p-6 pb-14"}>
           <span className={"text-2xl text-white"}>Profile</span>
         </div>
@@ -37,7 +52,11 @@ const Home: NextPage = () => {
               <span className={"text-sm text-gray-500"}>Orders</span>
               <span className={"font-medium"}>340</span>
             </div>
-            <div className={"h-24 w-24 rounded-full bg-red-400"} />
+            <div
+              className={
+                "h-24 w-24 rounded-full bg-red-400 group-hover:bg-red-300"
+              }
+            />
             <div className={"flex flex-col items-center"}>
               <span className={"text-sm text-gray-500"}>Spent</span>
               <span className={"font-medium"}>$340</span>
@@ -51,6 +70,7 @@ const Home: NextPage = () => {
           </div>
         </div>
       </div>
+
       <div className={"rounded-2xl bg-white p-10 shadow-xl"}>
         <div className={"flex items-center justify-between"}>
           <span>⬅️</span>
@@ -111,6 +131,26 @@ const Home: NextPage = () => {
           </button>
         </div>
       </div>
+
+      <form
+        className={
+          "flex flex-col space-y-2 p-5 bg-white"
+        }
+      >
+        <input
+          type={"text"}
+          required
+          placeholder={"username"}
+          className={"border p-1 peer border-gray400 rounded"}
+        />
+        <span className={"peer-invalid:text-red-500 peer-valid:hidden"}>
+          This input is invalid
+        </span>
+        <span className={"peer-valid:text-teal-500 peer-invalid:hidden"}>
+          Good username
+        </span>
+        <input type="submit" value={"login"} />
+      </form>
     </div>
   );
 };
