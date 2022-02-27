@@ -1,0 +1,27 @@
+version: '3'
+
+tasks:
+  install-all:
+    cmds:
+      - yarn install
+
+  reinstall-all:
+    cmds:
+      - rm -rf node_modules/*
+      - task: install-all
+
+  dev:
+    cmds:
+      - yarn dev
+
+  build:
+    cmds:
+      - yarn build
+
+  lint:
+    cmds:
+      - yarn lint
+
+  list:
+    cmds:
+      - task --list-all
