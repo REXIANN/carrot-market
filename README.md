@@ -1,5 +1,9 @@
 # Carrot Market by REXIANN
 
+```shell
+yarn dev
+```
+
 ## installation
 
 read [this](./docs/installation.md)
