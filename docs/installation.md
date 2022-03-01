@@ -9,8 +9,13 @@ brew install go-task/tap/go-task
 npx create-next-app@latest --typescript carrot-market
 npm i next@latest react@rc react-dom@rc
 
+npm install -D prettier prettier-plugin-tailwindcss # on my own
+```
+
+### tailwind 
+```shell
 npm i -D tailwindcss postcss autoprefixer
 npx tailwindcss init -p          
 
-npm install -D prettier prettier-plugin-tailwindcss # on my own
+npm i @tailwindcss/forms
 ```
