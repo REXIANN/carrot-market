@@ -1,10 +1,8 @@
 import * as React from "react";
 
-function cls(...classNames: string[]) {
-  return classNames.join(" ");
-}
+import { cls } from "../libs/utils";
 
-export default function Enter() {
+function Enter() {
   const [method, setMethod] = React.useState<"email" | "phone">("email");
   const onEmailClick = () => setMethod("email");
   const onPhoneClick = () => setMethod("phone");
@@ -142,3 +140,5 @@ export default function Enter() {
     </div>
   );
 }
+
+export default Enter;
