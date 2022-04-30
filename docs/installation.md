@@ -27,3 +27,13 @@ npm i -D prisma
 # use
 npx prisma
 ```
+
+## planetscale
+```shell
+brew install planetscale/tap/pscale
+brew install mysql-client
+brew upgrade pscale
+
+# use
+pscale
+```
