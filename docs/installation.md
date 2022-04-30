@@ -19,3 +19,11 @@ npx tailwindcss init -p
 
 npm i @tailwindcss/forms
 ```
+
+## Prisma
+```shell
+npm i -D prisma
+
+# use
+npx prisma
+```
