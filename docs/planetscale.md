@@ -43,6 +43,11 @@ planetscale 에서는 일종의 안전한 tunnel 을 사용한다. 컴퓨터와 
 원래 데이터베이스를 연결하는 일은 복잡하다. host와 port 를 복사하고, usename, password 등 모든것을 복사해야 한다. 
 
 연결을 하면 url 이 하나 나오는데, 이 url 이 서버와 연결된 통로인 것이다. 
+```shell
+pscale auth login # if login needed
+pscale connect carrot-market
+```
+
 
 .env 에 다음과 같이 써서 연결할 수 있다.
 `DATABASE_URL="mysql:{your-address}/carrot-market"`

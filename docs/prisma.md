@@ -50,4 +50,37 @@ Next steps:
 
 ```
 
+프리즈마가 schema 파일을 보는 이유는 두가지이다. 
 
+1. 모델들을 데이터베이스에 푸시하고 SQL 마이그레이션을 자동으로 처리하기 위해서
+2. 데이터베이스와 상호작용하기 위해 client 를 생성하고, client 에 자동완성으로 타입들을 추가함
+
+프리즈마는 엄연히 말하면 mysql 을 쓰지 않는다. mysql-compatible 하다고 설명하는 이유는 mysql 에는 없는 몇가지가 있기 때문이다.
+그 중 하나는 foreign key 제약이다.  
+
+실제 데이터베이스의 경우 어떤 항목이 foreign key 이면, 해당 데이터를 데이터베이스에 저장하기 전에 foreign key 에 해당하는  테이블로 가서
+그 데이터가 실제로 존재하는지 찾아본다. 그리고 해당 foreign key 는 반드시 존재해야 한다.
+이는 당연한데, 댓글을 저장하려면 그 작성자가 존재하는지 확인하는 것과 같다고 할 수 있다.
+
+하지만 프리즈마는 vitess 를 사용하므로 가능하다. vitess 는 데이터베이스를 잘게 쪼개서 여러 서버에 분산시키는 데에 특화되어 있다. 그래서 vitess 는
+해당 foreign key 에 해당하는 항목이 존재하는지 확인하지 않는다. 이것을 vitess 가 foreign key constarints 를 지원하지 않는 다고 한다.
+
+그래서 이 역할을 프리즈마에게 위임한다. 이를 위해 코드 두 줄을 추가 해야 한다.
+```shell
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"] # this
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+  referentialIntegrity = "prisma" # this
+}
+```
+
+만들어진 스키마를 데이터베이스에 푸시하면 생성된 스키마를 planetscale 에서 볼 수 있다.
+```shell
+npx prisma db push
+npx prisma studio # to run prisma studio
+```
