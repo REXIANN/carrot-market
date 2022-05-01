@@ -80,7 +80,9 @@ datasource db {
 ```
 
 만들어진 스키마를 데이터베이스에 푸시하면 생성된 스키마를 planetscale 에서 볼 수 있다.
+
 ```shell
 npx prisma db push
 npx prisma studio # to run prisma studio
+
 ```
