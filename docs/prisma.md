@@ -86,3 +86,8 @@ npx prisma db push
 npx prisma studio # to run prisma studio
 
 ```
+
+## Prisma Client
+```shell
+ npm i @prisma/client   
+```
