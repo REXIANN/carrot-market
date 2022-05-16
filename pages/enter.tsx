@@ -1,13 +1,37 @@
 import type { NextPage } from "next";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+
 import Button from "@/components/Button";
 import Input from "@/components/Input";
+
 import { cls } from "@/libs/utils";
 
+import { ID, EMAIL, PHONE } from "@/constants/input";
+
+interface EnterForm {
+  email?: string;
+  phone?: string;
+}
+
 const Enter: NextPage = () => {
-  const [method, setMethod] = useState<"email" | "phone">("email");
-  const onEmailClick = () => setMethod("email");
-  const onPhoneClick = () => setMethod("phone");
+  const { register, watch, reset, handleSubmit } = useForm<EnterForm>();
+
+  const onValid = () => {};
+
+  const [method, setMethod] = useState<ID>(EMAIL);
+
+  const onEmailClick = () => {
+    reset();
+    setMethod(EMAIL);
+  };
+  const onPhoneClick = () => {
+    reset();
+    setMethod(PHONE);
+  };
+
+  console.log(watch());
+
   return (
     <div className="mt-16 px-4">
       <h3 className="text-center text-3xl font-bold">Enter to Carrot</h3>
@@ -39,23 +63,35 @@ const Enter: NextPage = () => {
             </button>
           </div>
         </div>
-        <form className="mt-8 flex flex-col space-y-4">
-          {method === "email" ? (
-            <Input name="email" label="Email address" type="email" required />
-          ) : null}
-          {method === "phone" ? (
+        <form
+          onSubmit={handleSubmit(onValid)}
+          className="mt-8 flex flex-col space-y-4"
+        >
+          {method === EMAIL && (
             <Input
+              register={register(EMAIL, {
+                required: true,
+              })}
+              name="email"
+              label="Email address"
+              type={EMAIL}
+              required
+            />
+          )}
+          {method === PHONE && (
+            <Input
+              register={register(PHONE, {
+                required: true,
+              })}
               name="phone"
               label="Phone number"
               type="number"
-              kind="phone"
+              kind={PHONE}
               required
             />
-          ) : null}
-          {method === "email" ? <Button text={"Get login link"} /> : null}
-          {method === "phone" ? (
-            <Button text={"Get one-time password"} />
-          ) : null}
+          )}
+          {method === EMAIL && <Button text={"Get login link"} />}
+          {method === PHONE && <Button text={"Get one-time password"} />}
         </form>
 
         <div className="mt-8">

@@ -1,16 +1,22 @@
 import * as React from "react";
+import type { UseFormRegisterReturn } from "react-hook-form";
+
 interface InputProps {
   label: string;
   name: string;
+  register: UseFormRegisterReturn;
+  type: string;
+  required?: boolean;
   kind?: "text" | "phone" | "price";
-  [key: string]: any;
 }
 
 export default function Input({
   label,
   name,
+  register,
+  type,
+  required,
   kind = "text",
-  ...rest
 }: InputProps) {
   return (
     <div>
@@ -23,8 +29,10 @@ export default function Input({
       {kind === "text" ? (
         <div className="relative flex items-center  rounded-md shadow-sm">
           <input
+            {...register}
             id={name}
-            {...rest}
+            type={type}
+            required={required}
             className="w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-orange-500 focus:outline-none focus:ring-orange-500"
           />
         </div>
@@ -35,8 +43,10 @@ export default function Input({
             <span className="text-sm text-gray-500">$</span>
           </div>
           <input
+            {...register}
             id={name}
-            {...rest}
+            type={type}
+            required={required}
             className="w-full appearance-none rounded-md border border-gray-300 px-3 py-2 pl-7 placeholder-gray-400 shadow-sm focus:border-orange-500 focus:outline-none focus:ring-orange-500"
           />
           <div className="pointer-events-none absolute right-0 flex items-center pr-3">
@@ -50,8 +60,10 @@ export default function Input({
             +82
           </span>
           <input
+            {...register}
             id={name}
-            {...rest}
+            type={type}
+            required={required}
             className="w-full appearance-none rounded-md rounded-l-none border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-orange-500 focus:outline-none focus:ring-orange-500"
           />
         </div>
