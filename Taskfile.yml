@@ -25,3 +25,15 @@ tasks:
     cmds:
       - rm -rf ./node_modules
       - task: install-all
+
+  connect-db:
+    cmds:
+      - pscale connect carrot-market
+
+  prisma-push:
+    cmds:
+      - npx prisma db push
+
+  prisma-studio:
+    cmds:
+      - npx prisma studio
