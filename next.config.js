@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   experimental: {
     reactRoot: true,
-  }
-}
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
