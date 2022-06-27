@@ -28,3 +28,8 @@ compiler 를 통해서 사용되는 클래스만을 실시간으로 생성한다
 처음에 보면 reset css 들만 가져온다. 왜냐하면 global.css 의 tailwind 속성들 때문이다.
 
 그리고 실제로 우리가 사용하는 클래스명들만 즉시 가져온다. 변경사항을 저장하면 바로 가져와서 head 의 style 항목에 추가한다.
+
+## REFACTORING
+* libs/server 쪽에서 사용하는 상수들 분리 및 변환(ex: "POST" -> const HTTP_METHOD_POST)
+* api/users/enter 에서 분기되는 로직들에 대한 정리 및 세분화(단일책임, 개방폐쇄 필요)
+* api/users/enter 에서 말도 안되는 데이터베이스 형변환 삭제 후 스키마 업데이트
