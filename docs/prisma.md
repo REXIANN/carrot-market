@@ -91,3 +91,13 @@ npx prisma studio # to run prisma studio
 ```shell
  npm i @prisma/client   
 ```
+
+## Models
+```ts
+model Token {
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+}
+```
+1-N 관계를 `@relation` 을 통해 설정해주면 `prisma.token.user.name` 처럼 토큰을 타고 들어갈 수도 있다.
+실제로 DB 에 들어가보면 Token 테이블에는 user 컬럼이 없는 것을 확인할 수 있다.
